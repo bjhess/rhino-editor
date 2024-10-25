@@ -9,7 +9,32 @@
     input="y"
     data-blob-url-template="<%= rails_service_blob_path(":signed_id", ":filename") %>"
     data-direct-upload-url="<%= rails_direct_uploads_url %>"
+    data-controller="rhino-enhancements"
   >
+    <button slot="after-increase-indentation-button" class="toolbar__button rhino-toolbar-button toolbar__button--left-align" type="button" aria-describedby="left" data-action="click->rhino-enhancements#alignLeft" data-align="left" data-role="toolbar-item" tabindex="0">
+      <role-tooltip id="left" hoist="" part="toolbar__tooltip toolbar__tooltip--bold" exportparts="base:toolbar__tooltip__base, arrow:toolbar__tooltip__arrow" role="tooltip" inert="" placement="top">
+        Left Align &lt;cmd+shift+l&gt;
+      </role-tooltip>
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" part="toolbar__icon" viewBox="0 0 448 512" width="24" height="18" style="pointer-events: none;">
+        <path d="M24 40C10.7 40 0 50.7 0 64S10.7 88 24 88l240 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L24 40zm0 128c-13.3 0-24 10.7-24 24s10.7 24 24 24l400 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L24 168zM0 320c0 13.3 10.7 24 24 24l240 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L24 296c-13.3 0-24 10.7-24 24zM24 424c-13.3 0-24 10.7-24 24s10.7 24 24 24l400 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L24 424z"/>
+      </svg>
+    </button>
+    <button slot="after-increase-indentation-button" class="toolbar__button rhino-toolbar-button toolbar__button--center-align" type="button" aria-describedby="center" data-action="click->rhino-enhancements#alignCenter" data-align="center" data-role="toolbar-item" tabindex="0">
+      <role-tooltip id="center" hoist="" part="toolbar__tooltip toolbar__tooltip--bold" exportparts="base:toolbar__tooltip__base, arrow:toolbar__tooltip__arrow" role="tooltip" inert="" placement="top">
+        Center Align &lt;cmd+shift+e&gt;
+      </role-tooltip>
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" part="toolbar__icon" viewBox="0 0 448 512" width="24" height="18" style="pointer-events: none;">
+        <path d="M120 40c-13.3 0-24 10.7-24 24s10.7 24 24 24l208 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L120 40zM24 168c-13.3 0-24 10.7-24 24s10.7 24 24 24l400 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L24 168zM96 320c0 13.3 10.7 24 24 24l208 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-208 0c-13.3 0-24 10.7-24 24zM24 424c-13.3 0-24 10.7-24 24s10.7 24 24 24l400 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L24 424z"/>
+      </svg>
+    </button>
+    <button slot="after-increase-indentation-button" class="toolbar__button rhino-toolbar-button toolbar__button--right-align" type="button" aria-describedby="right" data-action="click->rhino-enhancements#alignRight" data-align="right" data-role="toolbar-item" tabindex="0">
+      <role-tooltip id="right" hoist="" part="toolbar__tooltip toolbar__tooltip--bold" exportparts="base:toolbar__tooltip__base, arrow:toolbar__tooltip__arrow" role="tooltip" inert="" placement="top">
+        Right Align &lt;cmd+shift+r&gt;
+      </role-tooltip>
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" part="toolbar__icon" viewBox="0 0 448 512" width="24" height="18" style="pointer-events: none;">
+        <path d="M424 40c13.3 0 24 10.7 24 24s-10.7 24-24 24L184 88c-13.3 0-24-10.7-24-24s10.7-24 24-24l240 0zm0 128c13.3 0 24 10.7 24 24s-10.7 24-24 24L24 216c-13.3 0-24-10.7-24-24s10.7-24 24-24l400 0zm24 152c0 13.3-10.7 24-24 24l-240 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l240 0c13.3 0 24 10.7 24 24zM424 424c13.3 0 24 10.7 24 24s-10.7 24-24 24L24 472c-13.3 0-24-10.7-24-24s10.7-24 24-24l400 0z"/>
+      </svg>
+    </button>
   </rhino-editor>
 </form>
 

@@ -5,13 +5,16 @@ import * as Trix from "trix"
 import "rhino-editor/exports/index.js"
 import "trix/dist/trix.css";
 import "rhino-editor/exports/styles/trix.css";
+import TextAlign from '@tiptap/extension-text-align'
 import { Application } from "@hotwired/stimulus"
 import EmbedController from "../controllers/embed_controller.js"
 import TipTapMirrorController from "../controllers/tip_tap_mirror_controller.js"
+import RhinoEnhancementsController from "../controllers/rhino_enhancements_controller.js"
 window.Stimulus = Application.start()
 window.Stimulus.debug = true
 Stimulus.register("embed", EmbedController)
 Stimulus.register("tip-tap-mirror", TipTapMirrorController)
+Stimulus.register("rhino-enhancements", RhinoEnhancementsController)
 
 ActiveStorage.start()
 
@@ -31,6 +34,14 @@ ActiveStorage.start()
 
   if (trixHtmlMirror) Prism.highlightElement(trixHtmlMirror)
   if (tipTapHtmlMirror) Prism.highlightElement(tipTapHtmlMirror)
+
+  const rhinoEditor = document.querySelector("rhino-editor[input=y]")
+  rhinoEditor.addExtensions(
+    TextAlign.configure({
+      types: ['heading', 'paragraph'],
+      alignments: ['left', 'center', 'right']
+    })
+  )
 
   const escapeHTML = (str) => {
     const p = document.createElement("p");
