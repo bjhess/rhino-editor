@@ -8,6 +8,7 @@ import "trix/dist/trix.css";
 import { Application } from "@hotwired/stimulus"
 import EmbedController from "../controllers/embed_controller.js"
 import TipTapMirrorController from "../controllers/tip_tap_mirror_controller.js"
+import Youtube from '@tiptap/extension-youtube'
 window.Stimulus = Application.start()
 window.Stimulus.debug = true
 Stimulus.register("embed", EmbedController)
@@ -15,6 +16,16 @@ Stimulus.register("tip-tap-mirror", TipTapMirrorController)
 
 ActiveStorage.start()
 
+
+class RhinoEditor extends TipTapEditor {
+  constructor () {
+    super()
+
+    this.addExtensions(
+      Youtube,
+    )
+  }
+}
 
 // Import all channels.
 // const channels = import.meta.globEager('./**/*_channel.js')
@@ -73,4 +84,3 @@ ActiveStorage.start()
     });
   }
 })()
-
