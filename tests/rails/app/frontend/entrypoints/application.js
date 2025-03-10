@@ -5,6 +5,9 @@ import * as Trix from "trix"
 import "rhino-editor"
 import "rhino-editor/exports/styles/trix.css";
 import Youtube from "@tiptap/extension-youtube"
+import {common, createLowlight} from 'lowlight'
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import {toHtml} from 'hast-util-to-html'
 import "trix/dist/trix.css";
 import { Application } from "@hotwired/stimulus"
 import EmbedController from "../controllers/embed_controller.js"
@@ -16,8 +19,42 @@ Stimulus.register("tip-tap-mirror", TipTapMirrorController)
 
 ActiveStorage.start()
 
+const lowlight = createLowlight(common)
+const syntaxHighlight = CodeBlockLowlight.configure({
+  lowlight,
+})
+
+function extendRhinoEditor (event) {
+  const rhinoEditor = event.target
+
+  if (rhinoEditor == null) return
+
+  rhinoEditor.starterKitOptions = {
+    ...rhinoEditor.starterKitOptions,
+    // We disable codeBlock from the starterkit to be able to use CodeBlockLowlight's extension.
+    codeBlock: false
+  }
+
+  rhinoEditor.extensions = [syntaxHighlight]
+
+  rhinoEditor.rebuildEditor()
+}
+
+document.addEventListener("rhino-before-initialize", extendRhinoEditor)
+
 document.addEventListener("rhino-initialize", (e) => {
-  e.target.addExtensions(Youtube)
+  const rhinoEditor = e.target
+  rhinoEditor.addExtensions(Youtube)
+
+  const content = `<pre><code class="language-javascript"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
+  <span class="hljs-comment">// Always do this thing</span>
+  <span class="hljs-comment">// Because true is always true</span>
+  <span class="hljs-number">1</span> + <span class="hljs-number">1</span>
+  <span class="hljs-keyword">const</span> result = <span class="hljs-number">3</span>
+}</code></pre>`
+  setTimeout(() => {
+    rhinoEditor.editor.chain().focus().setContent(content).run()
+  }, 0)
 })
 
 
