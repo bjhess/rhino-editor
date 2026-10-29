@@ -412,7 +412,10 @@ export const Attachment = Node.create<AttachmentOptions>({
       // When it's .attachment, its coming from <action-text-attachment><figure></figure></action-text-attachment> its the raw HTML.
       {
         tag: "action-text-attachment:not([content]) > figure.attachment",
-        contentElement: "figcaption",
+        // Published ActionText HTML omits the <figcaption> when there's no caption.
+        contentElement: (figure) =>
+          figure.querySelector("figcaption") ??
+          document.createElement("figcaption"),
         getAttrs: (node) => {
           const isValid = canParseAttachment(node, this.options.previewable);
 
